@@ -1,0 +1,144 @@
+﻿<div ng-controller="ClienteController">
+    <form>
+        <div class="col-lg-12 breadcrumb">          
+            <label>Cliente</label>  
+            <table class="col-12">
+                <tr class="col-10">
+                    <td>Nome</td>
+                    <td class="col-12"><input style="width: 300px" type="text" name="nome" ng-model="ClienteDTO.Cliente.Nome" /></td>
+                </tr>
+                <tr class="col-10">
+                    <td>CNPJ</td>
+                    <td><input type="number" name="cnpj" ng-model="ClienteDTO.Cliente.CNPJ" /></td>
+                </tr>
+                <tr class="col-10">
+                    <td>Ativo</td>
+                    <td><input type="checkbox" name="ativo" ng-model="ClienteDTO.Cliente.Ativo" /></td>
+                </tr>
+
+            </table>
+            <hr />
+            
+            <hr />
+            <div class="col-12">
+                <label>Endereço</label>
+                <table class="col-12">
+                    <tr class="col-10">
+                        <td>CEP</td>
+                        <td class="col-12"><input type="number" name="cep" id="cep" ng-model="ClienteDTO.Endereco.CEP" required ng-maxlength=8 ng-minlength=8/></td>
+                        <td><input type="button" class="btn-primary" value="Buscar Endereço" ng-click="GetEndereco()" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Tipo Logradouro</td>
+                        <td><input type="text" name="tipologradouro" id="tipologradouro" ng-model="ClienteDTO.Endereco.TipoLogradouro" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Logradouro</td>
+                        <td><input style="width: 450px" type="text" name="logradouro" id="logradouro" ng-model="ClienteDTO.Endereco.Logradouro" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Número</td>
+                        <td><input type="text" name="numero" id="numero" ng-model="ClienteDTO.Endereco.Numero" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Complemento</td>
+                        <td><input type="text" name="complemento" id="complemento" ng-model="ClienteDTO.Endereco.Complemento" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Bairro</td>
+                        <td><input type="text" name="bairro" id="bairro" ng-model="ClienteDTO.Endereco.Bairro" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>Cidade</td>
+                        <td><input type="text" name="cidade" id="cidade" ng-model="ClienteDTO.Endereco.Cidade" /></td>
+                    </tr>
+                    <tr class="col-10">
+                        <td>UF</td>
+                        <td><input type="text" name="uf" id="uf" ng-model="ClienteDTO.Endereco.UF" /></td>
+                    </tr>
+                </table>
+                <hr />
+                <label>Telefones</label>
+                <table>
+                    <tr>
+
+                        <td ng-model="Telefone">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="tipo" value="1" ng-model="Telefone.IdTipoTelefone"><label for="Fixo"> Fixo</label>
+                                        <input type="radio" name="tipo" value="2" ng-model="Telefone.IdTipoTelefone"><label for="Residencial"> Residencial</label>
+                                        <input type="radio" name="tipo" value="3" ng-model="Telefone.IdTipoTelefone"><label for="Celular"> Celular</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>DDD</label><input type="number" name="ddd" id="ddd" ng-model="Telefone.DDD" required ng-maxlength=2 ng-minlength=2 />
+                                        <label>Número</label><input type="number" name="numero" id="numero" ng-model="Telefone.Numero" />
+                                        <input type="button" class="btn-success" value="Adicionar" ng-click="setTelefone()" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr  class="list-group" ng-repeat="telefone in telefones">
+                        <td class="list-group-item">
+                            <label>({{telefone.DDD}})</label> <label>{{telefone.Numero}}</label> - <label>{{telefone.Tipo}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <label>e-mails</label>
+                <table>
+                    <tr>
+                        <td>
+                            <label>e-mail</label>
+                            <input type="email" name="email" id="email" ng-model="Email" />
+                            <input type="button" class="btn-success" value="Adicionar" ng-click="setEmail()" />
+                        </td>
+                    </tr>
+                    <tr class="list-group" ng-repeat="email in emails">
+                        <td class="list-group-item">
+                            <label>{{email}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <label>Sócios</label>
+                <table>
+                    <tr>
+                        <td ng-model="Socio">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label>Nome</label><input type="text" name="nome" id="nome" ng-model="Socio.Nome" />
+                                        <label>CPF</label><input type="number" name="cpf" id="cpf" ng-model="Socio.CPF"/>
+                                        <input type="button" class="btn-success" value="Adicionar" ng-click="setSocio()" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr class="list-group" ng-repeat="socio in socios">
+                        <td class="list-group-item">
+                            <label>{{socio.Nome}}</label> - <label>{{socio.CPF}}</label>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+                <table>
+                    <tr>
+                        <td>
+                            <br />
+                            <input type="button" class="btn-success" href="#!" value="Salvar" ng-click="salvaCliente()" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+    </form>
+
+
+</div>

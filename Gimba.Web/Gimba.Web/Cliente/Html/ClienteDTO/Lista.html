@@ -1,0 +1,46 @@
+﻿
+<a class="btn btn-primary" href="/#!/criar">Criar</a>
+<div ng-controller="listaController">
+
+    <table class="table">
+        <tr>
+            <th class="col-lg-3">Nome</th>
+            <th class="col-lg-3">CNPJ</th>
+            <th class="col-lg-2">Email</th>
+            <th class="col-lg-1">Ativo</th>
+            <th class="col-lg-2">Telefone</th>
+            <th class="col-2">Detalhes</th>
+        </tr>
+
+        <tr ng-repeat="data in clientes.data">
+            <td class="col-lg-3">{{data.Cliente.Nome}}</td>
+            <td class="col-lg-3">{{data.Cliente.CNPJ}}</td>
+            <td class="col-3">
+                <table>
+                    <tr ng-repeat="email in data.Cliente.Emails">
+                        <td>{{email.Email}}</td>
+                    </tr>
+                </table>
+            </td>
+
+            <td class="col-lg-1"><input type="checkbox" ng-checked="{{data.Cliente.Ativo}}" /></td>
+            <td class="col-3">
+                <table>
+                    <tr ng-repeat="telefone in data.Cliente.Telefones">
+                        <td>{{telefone.DDD}}  {{telefone.Numero}}</td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <!--<a href="#!/Delete/{{data.Cliente.IdCliente}}">Detalhes</a>-->
+                <input type="hidden" name="idcliente" id="idcliente" value="data.Cliente.IdCliente" />
+              
+                <input type="button" class="btn-primary" value="Ativar/Desativar" ng-click="deleta(data.Cliente.IdCliente)" />
+                
+
+            </td>
+        </tr>
+
+    </table>
+</div>
+
